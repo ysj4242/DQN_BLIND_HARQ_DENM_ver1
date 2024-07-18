@@ -20,7 +20,7 @@ totalStepCt = 0;
 sharingReplay = true;
 trainingMode = false;
 if trainingMode == false
-    Agents = load('26.mat');
+    Agents = load('32.mat');
 end
 obsInfo = rlNumericSpec([1 1]);
 obsInfo.Name = 'DENM States';
@@ -42,7 +42,7 @@ criticNetwork = [
     reluLayer('Name','CriticRelu2')
     fullyConnectedLayer(length(actInfo.Elements),'Name','output')];
 
-criticNetwork = dlnetwork(criticNetwork);
+% criticNetwork = dlnetwork(criticNetwork);
 
 criticOpts = rlRepresentationOptions('LearnRate',0.01,'GradientThreshold',1); %'UseDevice',device);
 
@@ -86,7 +86,7 @@ for episodesCt = 1:numEpisodes
         'beaconSizeBytes',B,'simulationTime',T,'rho',100,'roadLength',2000,'NLanes',3,'MCS_NR',7, ...
         'vMean',70,'vStDev',3,'roadWidth',3.5,'Raw',[50 75 100 125 150 200 300],'printUpdateDelay', true, 'dynamicScheduling', false, 'TsensingPeriod', 1, ...
         'cv2xNumberOfReplicasMax', 3, 'DENM_prob', 0.3, 'dcc_active', false, 'sizeSubchannel',25, 'BwMHz',10, 'SCS_NR',15, ...
-        'Priority_SPS',false, 'T2autonomousMode_min',5,'resourceReEvaluation',false,'cv2xCbrFactor',1, 'Priority_DCC', 1, 'seed', 2});
+        'Priority_SPS',false, 'T2autonomousMode_min',5,'resourceReEvaluation',true,'cv2xCbrFactor',1, 'Priority_DCC', 1, 'seed', 2});
     % Update PHY structure with the ranges
     [phyParams] = deriveRanges(phyParams,simParams);
 
@@ -587,7 +587,7 @@ for episodesCt = 1:numEpisodes
             if stationManagement.pckBuffer_prob(idEvent) < simParams.DENM_prob
                 stationManagement.DENM_pck(idEvent) = 1;
                 stationManagement.cv2xNumberOfReplicas(idEvent) = phyParams.cv2xNumberOfReplicasMax;
-                stationManagement.resReselectionCounterCV2X(idEvent) = 1;
+                stationManagement.resReselectionCounterCV2X(idEvent) = 0;
 
             end
             timeManagement.timeLastPacket(idEvent) = timeManagement.timeNow-timeManagement.addedToGenerationTime(idEvent);
