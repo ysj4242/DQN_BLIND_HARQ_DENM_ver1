@@ -8,15 +8,15 @@ time = (1e-3:1e-3:T);  %%% 0.001간격
 time = reshape(time,length(time),1);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% 300
-A = load('3rep_200_np_nd.mat');        %black
-B = load('1.mat');        %
-C = load('2rep_400_np_nd.mat');         %red
-D = load('1rep_400_np_nd.mat');         %
-E = load('2rep_200_np_nd.mat');         %blue
-F = load('1rep_200_np_nd.mat');         %
-G = load('2rep_200_np_nd.mat');         %green
-H = load('2rep_200_np_nd.mat');         %
-I = load('2rep_200_np_nd.mat');          %green
+A = load('DQN_200.mat');        %black
+B = load('2rep_200.mat');        %
+C = load('3rep_200.mat');         %red
+D = load('3rep_200.mat');         %
+E = load('3rep_200.mat');         %blue
+F = load('3rep_200.mat');         %
+G = load('3rep_200.mat');         %green
+H = load('3rep_200.mat');         %
+I = load('3rep_200.mat');          %green
 
 % C = load('control_524_V2I_I2V_delt.mat');
  
@@ -118,8 +118,8 @@ figure(1)
 semilogy(distance,rep2_a,'Color','black','LineStyle','-','Marker','o','LineWidth',1.5);
 hold on
 semilogy(distance,rep1_b,'Color','black','LineStyle','--','Marker','o','LineWidth',1.5);
-% hold on
-% semilogy(distance,rep2_c,'Color','r','LineStyle','-','Marker','o','LineWidth',1.5);
+hold on
+semilogy(distance,rep2_c,'Color','r','LineStyle','-','Marker','o','LineWidth',1.5);
 % hold on
 % semilogy(distance,rep1_d,'Color','r','LineStyle','--','Marker','o','LineWidth',1.5);
 % hold on
